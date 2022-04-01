@@ -11,7 +11,10 @@ pipeline {
       parallel {
         stage('Unit Test') {
           steps {
-            sh 'dotnet test tests/UnitTests'
+            warnError(message: 'Unit problem') {
+              sh 'dotnet test tests/UnitTests'
+            }
+
           }
         }
 
